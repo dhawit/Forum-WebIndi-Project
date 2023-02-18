@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<nav>
+   
+</nav>
+<body>
+    <div class="body-container">
+        <div class="left-column">
+            <div class="left-column-container">
+                <div class="sidebar-top">
+                    <div class="logo">
+                        <img src="/images/forum-logo.png" alt="" width="60px">
+                    </div>
+                    <div class="inbox">
+                        Account
+                    </div>
+                </div>
+                
+                <div class="channel-container">
+                    <div class="channel">
+                        <div class="channel-content">
+                            <div class="profile-icon">
+                                <div class="profile-container">
+                                    <img th:src="@{/images/uploads/} +${name} + .png" height="80px" alt="No Profile Image Please Upload">
+                                    <div class="profile-text-container">
+                                        <div class="profile-text-title">
+                                            John Cena
+                                        </div>
+                                        <div class="profile-text-subtitle">
+                                            john@gmail.com
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="icon">
+                                    <div class="icon-icon">
+                                    <form action = "/uploadProfile" method="post" enctype="multipart/form-data">
+                                        
+                                    <div class="icon-container">
+                                      <input
+                                        type="file"
+                                        name="icon"
+                                        id="upload-icon"
+                                        hidden
+                                        accept="image/*"
+                                      />
+                                      <label id="select" for="upload-icon"
+                                        >Choose Image</label
+                                      >
+                                    </div>
+    
+                                    <button class="submit-button">Upload</button>
+    
+                                    </form>
+                                    </div>
+                                </div>
+                                
+    
+                                <div>
+                                    <form action="/deleteAccount" method="post">
+                                        <button class="delete-button">Delete Account</button>
+                                    </form>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>   
+                <div class="story">
+                    <div class="story-container">
+                        <div class="story-container-title">
+                            View Stories
+                        </div>
+                        <div class="stories">
+                            <div class="story-ind">
+                                <div class="icon">
+                                        <img id = "story-icon" src="/images/music.png" height="40px" alt="">
+                                </div>
+                                <div class="story-text"> 
+                                    <a th:text="${name}"></a>
+                                </div>
+                                <button id = "view" onclick="">View</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+            <div class="chat-section">
+                <div class="chat-section-top">
+                    <div class="chat-name">
+                        Channel
+                    </div>
+                </div>
+                <div class="chat-area">
+                    <div id = "chat-area" class="chat-area-container">
+                    
+        
+                        
+                        <!--<div class="chat-area-other-container">
+                            <div class="chat-area-other">
+                            
+                                <div class="icon">
+                                    <img src="/images/music.png" height="40px">
+                                </div>
+                                <div class="chat-content">
+                                    New message is good to hear.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-area-other-container">
+                            <div class="chat-area-user">
+
+                                <div class="chat-content-user">
+                                    New message is good to hear.
+                                </div>
+                                <div class="icon">
+                                    <img src="/images/music.png" height="40px">
+                                </div>
+                            </div>
+                        </div>-->
+                        
+                        
+                    </div>
+                </div>
+                <div class="chat-section-bottom">
+                    <form id="messageForm" name="messageForm" nameForm="messageForm">
+                    <div class="send-message">
+                        <input id = "message-bar" class="message-bar" placeholder="Enter your message.">
+                        <button type="submit" class="primary" style="display: none;">
+                            <i class="far fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+                <form id="form">
+            
+                </div>
+            </div>
+        </div>
+
+        <div id = "name" th:text = "${name}"></div>
+        
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js "></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js "></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+
+    var username = document.getElementById("name").textContent;
+    var messageInput = document.getElementById("message-bar");
+    var chatArea = document.getElementById("chat-area");
+    var messageForm = document.getElementById("messageForm");
+
+    function connect(event) {
+            if (username) {
+                
+                var socket = new SockJS('/forumEndpoint');
+                stompClient = Stomp.over(socket);
+
+                stompClient.connect({}, onConnected, onError);
+
+            }
+        }
+        function onConnected(){
+            stompClient.subscribe('/topic/public', onMessageReceived);
+
+            stompClient.send("/app/chat.register", {},
+                JSON.stringify({
+                    sender: username,
+                    type: 'JOIN',
+                    content : username + "joined the channel"
+                })
+            );
+        }
+        function onError(){
+
+        }
+
+        function send(event) {
+            var messageContent = messageInput.value.trim();
+            if (messageContent && stompClient) {
+                var chatMessage = {
+                    sender: username,
+                    content: messageInput.value,
+                    type: 'CHAT'
+                };
+
+                stompClient.send("/app/chat.send", {}, JSON.stringify(chatMessage));
+                messageInput.value = '';
+            }
+            event.preventDefault();
+
+        }
+        function onMessageReceived(payload) {
+            var messager;
+            var append;
+            var message = JSON.parse(payload.body);
+            message.sender == username ? messager = "You" : messager = message.sender;
+            var onJoinMessage = `<div class="event-message">`+ message.sender+` joined </div>`
+            
+            if (message.type === 'JOIN') {
+            }
+            else if(message.type = 'CHAT'){
+                if(messager == "You"){
+                    userAppend(message.content, message.sender);
+                }
+                else {
+                    otherAppend(message.content, message.sender);
+                }
+            }
+        }
+
+        function loadFilter(message){
+
+        }
+
+        function userAppend(message, icon, id){
+
+            var Append = `<div class="chat-area-other-container">
+                            <div class="chat-area-user">
+                                
+                                <form method = "POST" action = "/deleteMessage">
+                                    <input name = "messageId" type = "text" value ="`+id+`" hidden>
+                                    <button id = "delete-button"><i class="fa-solid fa-trash"></i></button>
+                                </form>
+                                <div class="chat-content-user">
+                                    `+message+`
+                                </div>
+                                <div class="icon">
+                                    <img src="/images/uploads/`+icon+`.png" height="40px">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class = "clearfix"></div>
+                        <br>`;
+            
+            chatArea.innerHTML += Append;
+        }
+        function otherAppend(message, icon){
+
+            var Append = `<div class="chat-area-other-container">
+                            <div class="chat-area-other">
+                            
+                                <div class="icon">
+                                    <img src="/images/uploads/`+icon+`.png" height="40px">
+                                </div>
+                                <div class="chat-content">`+ message+`
+                                </div>
+                            </div>
+                        </div>`;
+            
+            chatArea.innerHTML += Append;
+            chatArea.scrollTo = chatArea.scrollHeight;
+        }
+
+        messageForm.addEventListener('submit', send);
+        connect()
+
+</script>
+<div th:each = "message: ${data}">
+    <script>
+        if("[[${message.sender}]]" == "[[${name}]]"){
+            userAppend("[[${message.message}]]","[[${message.sender}]]","[[${message.MessageId}]]");
+        } 
+        else{
+            otherAppend("[[${message.message}]]","[[${message.sender}]]");
+        }
+    </script>
+</div>
+
+</html> 

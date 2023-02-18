@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+html{
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a{
+    text-decoration: none;
+}
+.logo{
+    position: absolute;
+    left: 29px;
+    top: 20px;
+    
+}
+.center{
+    transform: translate(0,50%);
+    animation: appear 0.6s;
+}
+@keyframes appear {
+    0%{
+        transform: translate(0,100%);
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.2;
+    }
+    70%{
+        opacity: 0.4;
+    }
+    100%{
+        transform: translate(0,50%);
+        opacity: 1;
+    }
+}
+.center-container{
+    width: 700px;
+    height: 450px;
+    background: #FFFFFF;
+    border-radius: 27px 0px 27px 27px;
+    border: none;
+}
+.center-content{
+    height: 400px;
+    width: fit-content;
+    margin: auto;
+    padding-top: 25px;
+
+}
+.tabbar-options{
+    display: flex;
+    margin: 0;
+}
+.form{
+    display: flex;
+}
+.signin, .signup{
+    width: 350px;
+    height: 41px;
+    margin: 0;
+    background: #000000;
+    border: none;
+    border-radius: 27px 0px 0px 0px;    
+    text-align: center;
+    line-height: 40px;
+    font-family: Quicksand ;
+    font-weight: 400;
+    cursor: pointer;
+    transition-duration: 0.2s;
+}
+.signup{
+    color: #000000;
+    background-color: #ffffff;
+    border-radius: 0px 27px 0px 0px; 
+}
+#signup{
+    color: #000000;
+}
+#signin{
+    color: #fff;
+}
+.form{
+    width: fit-content;
+}
+.title-container{
+    font-family: Quicksand;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.title{
+    padding-top: 10px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.sub-title{
+    padding-top: 10px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+.input-wrapper {
+    font-family: Quicksand;
+    position: relative;
+    margin-top: 15px;
+}
+  
+.input-wrapper input {
+    font-family: Quicksand;
+    border: 1px solid #C2C2C2;
+    border-radius: 4px;
+    position: relative;
+    width: 250px;
+    margin-top: 10px;
+    line-height: 6ex;
+    padding-left: 20px ;
+    outline: none;
+    color: #3E3E3E;
+    font-size: 14px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.form-right{
+    margin-left: 35px;
+}
+  
+.input-wrapper label {
+    position: absolute;
+    top: 0.2ex;
+    z-index: 1;
+    left: 2em;
+    background-color: white;
+    padding: 0 5px;
+    font-size: 12px;
+}
+.terms-and-conditions-container {
+    font-family: Quicksand;
+    font-size: 14px;
+    width: 320px;
+    margin: auto;
+    margin-top: 30px;
+}
+.submit{
+    text-align: center;
+    margin-top: 10px;
+}
+
+#submit{
+    border: solid 1px black;
+    width: 320px;
+    height: 40px;
+    background: #000000;
+    border-radius: 6px;
+    color: #fff;
+    font-family: Quicksand;
+    font-size:18px;
+    font-weight: 500;
+    cursor: pointer;
+}

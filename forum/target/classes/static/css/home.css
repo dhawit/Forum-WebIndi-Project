@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+html{
+    background-color: #000000;
+    margin: 0;
+    width: 100%;
+    overflow: hidden;
+}
+body{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+.logo img{
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 20px;
+}
+.left-column{
+    height: 100vh;
+    width: 350px;
+    background-color: #fff;
+    color: #000000;
+    border-right: solid 1px #EFEDED;
+}
+.sidebar-top{
+    background-color: #000000;
+    display: flex;
+    height: 85px;
+}
+.body-container{
+    display: flex;
+}
+.inbox{
+    font-family: Quicksand;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 85px;
+    padding-left: 30px;
+}
+.channel{
+    border-left: 0;
+    height: 300px;
+    width: 350px;
+    border-bottom: solid 1px #EFEDED;
+}
+.channel-content{
+    display: flex;
+    margin: auto 35px;
+}
+.channel-icon, .profile-icon{
+    transform: translate(0,25%);
+    width: fit-content;
+    margin: 0 auto;
+}
+.channel-container img{
+    border-radius: 50%;
+
+}
+.icon-container {
+    display: flex;
+    margin: 15px auto;
+    justify-content: space-between;
+    font: inherit;
+}
+#select, #view{
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 20px;
+    color: #ffffff;
+    padding: 5px 15px;
+    background-color: #000000;
+    border-radius: 6px;
+    cursor: pointer;
+    
+}
+button{
+    cursor: pointer;
+}
+.submit-button, .delete-button{
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 20px;
+    color: #ffffff;
+    padding: 5px 36px;
+    background-color: #000000;
+    border: none;
+    border-radius: 6px;
+}
+.delete-button{
+    width: fit-content;
+    margin: 10px 55px;
+    padding: 5px 35px;
+    background-color: #9f3535;
+    
+}
+.icon-icon{
+    width: fit-content;
+    margin: auto;
+}
+.channel-text-title{
+    font-size:20px;
+    margin-left:20px;
+    margin-top: 20px;
+    font-family: Quicksand;
+    font-weight: 500;
+}
+.channel-text-description{
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 20px;
+    color: #7E7A7A;
+}
+.chat-section{
+    background-color: #fff;
+    color: #fff;
+    height: 100vh;
+    width: 100%;
+}
+.chat-section-top{
+    height: 85px;
+    background-color: #000000;
+    width: 100%;
+}
+.chat-name{
+    text-align: center;
+    line-height: 80px;
+    font-size: 28px;
+    color: #fff;
+    font-family: Quicksand;
+}
+.chat-area{
+    height: 76vh;
+    width: 100%;
+    color: #000000;
+    overflow-y: scroll;
+}
+.chat-area-container{
+    font-size: 12;
+    font-weight: 400;
+    font-family: Quicksand;
+    margin: 40px;
+}
+.chat-area-user{
+    float: right;
+}
+.chat-area-other, .chat-area-user{
+    display: flex;
+}
+.icon{
+    margin: 0 10px;
+}
+.icon img{
+    border-radius: 50%;
+}
+.chat-content{
+    height: fit-content;
+    width: fit-content;
+    border-radius: 27px;
+    padding: 12px;
+    border:solid 2px #D6D6D6;
+}
+.chat-content-user{
+    height: fit-content;
+    width: fit-content;
+    border-radius: 27px;
+    padding: 12px;
+    right: 0;
+    border:solid 2px #000000;
+    color: #fff;
+    background-color: #000000;
+    float: right;
+}
+.clearfix{
+    clear: both;
+}
+.chat-area-other-container{
+    margin:10px auto;
+}
+.send-message{
+    width: fit-content;
+    margin: auto auto 20px auto;
+}
+.profile-container{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+.profile-text-container{
+}
+.profile-text-title{
+
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 18px;
+    margin-left: 20px;
+    color: #000000;
+    line-height: 40px;
+}
+.profile-text-subtitle{
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 20px;
+    color: #7E7A7A;
+}
+.message-bar{
+    height: 38px;
+    width: 500px;
+    background-color: #F5F5F5;
+    color: #abbacd;
+    font-size: 16px;
+    line-height: 38px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    padding-left:20px;
+}
+#delete-button{
+    margin-top: 15px;
+    margin-right: 10px;
+    border: none;
+    background-color: #ffffff;
+    color: #9f3535;;
+    font-size: 15px;
+    cursor: pointer;
+}
+.story-container{
+    margin-top: 20px
+}
+.story-container-title{
+    text-align: center;
+    font-family: Quicksand;
+}
+.icon{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.story-text{
+    line-height: 60px;
+    margin-left: 10px;
+    font-family: Quicksand;
+    font-weight: 400;
+    font-size: 14px;
+    color: #7E7A7A;
+}
+.story-ind{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}
+#view{
+    margin-top: 15px;
+    border: none;
+    padding: 0 20px;
+    height: 30px;
+}

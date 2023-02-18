@@ -1,0 +1,10 @@
+.whole{
+    width: 400px;
+    height: 600px;
+}
+.left{
+    float: left;
+}
+.clearfix{
+    clear: both;
+}

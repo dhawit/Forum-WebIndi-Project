@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://thymeleaf.org">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+
+</head>
+<nav>
+    <div class="logo">
+        <img src="/images/forum-logo.png" alt="" width="100px">
+    </div>
+</nav>
+<body>
+    <div class = "center">
+        <div class="tabbar">
+            <div class = "tabbar-options">
+                <div class="signin">
+                    <a id = "signin" href="login.html">Sign In</a>
+                </div>
+                <div class="signup">
+                    <a id = "signup" href="/registerPage">Sign Up</a>
+                </div> 
+            </div>
+        </div>
+        <form th:action = "@{/login}"  method="post">
+        <div class = "center-container">
+            <div class="center-content">
+                <div class="title-section">
+                    <div class="log">
+                        <img src="/images/forum-logo.png" alt="" height="60px">
+                    </div>
+                    <div class="title-container">
+                        <div class="title">
+                            Login To Forum
+                        </div>
+                        <div class="sub-title">
+                            Lorem ipsum dolor sit amet
+                        </div>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <label for="email">E-mail</label>
+                    <input name = "email" type="email" >
+                </div>
+
+                <div class="input-wrapper">
+                    <label for="password">Password</label>
+                    <input name = "password" type="password" >
+                </div>
+                <div class="forgot-password">
+                    <a href="/resetPassword" style="text-decoration: none; color: inherit;">forgot password?</a>
+                </div>
+                <div class="submit">
+                    
+                <button id="submit">
+                    Login
+                </button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    </div>
+</body>
+</html> 
